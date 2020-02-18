@@ -1,5 +1,5 @@
 ---
-title: Retry scope
+title: Retry-Scope header field
 abbrev:
 docname: draft-polli-retry-scope-latest
 category: std
@@ -20,25 +20,15 @@ author:
     email: robipolli@gmail.com
 
 normative:
-  UNIX:
-    title: The Single UNIX Specification, Version 2 - 6 Vol Set for UNIX 98
-    author:
-      name: The Open Group
-      ins: The Open Group
-    date: 1997-02
 
 informative:
-  RFC2818:
-  RFC5788:
-  RFC6962:
-  RFC7396:
 
 --- abstract
 
 This document defines
 the Retry-Scope header field for HTTP
-thus allowing a server returning a Retry-After header field
-to communicate the scope for that header field. 
+thus allowing a server to communicate the scope
+of the returned Retry-After header field.
 
 --- note_Note_to_Readers
 
@@ -56,60 +46,84 @@ The source code and issues list for this draft can be found at
 
 # Introduction
 
-The Retry-After header {{RFC7231}}, Section 7.1.3 allows a server
+The Retry-After header {{!SEMANTICS=RFC7231}}, Section 7.1.3 allows a server
 to indicate how long the user agent ought to wait before making a follow-up request.
 
 While Retry-After applies to the issued request, it may be useful for the server
 to communicate to the user agent that the conditions that lead to returning Retry-After
-or other service management headers,
 are broader in scope than a single request.
 
-## This proposal
-
-This proposal allows a server to include the above information using the Retry-Scope header field,
-and ask to the client to temporarily refrain
+This proposal allows a server to convey that scope
+in the Retry-Scope response header field,
+and ask the client to temporarily refrain
 from making other requests to the same resource,
-or even to all resources on the same server
+or even to all resources on the same server.
 
 
 ## Notational Conventions
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this
-document are to be interpreted as described in BCP 14 ([RFC2119] and [RFC8174])
+document are to be interpreted as described in BCP 14 ({{!RFC2119}} and {{!RFC8174}})
 when, and only when, they appear in all capitals, as shown here.
 
 This document uses the Augmented BNF defined in {{!RFC5234}} and updated
 by {{!RFC7405}} along with the "#rule" extension defined in Section 7 of
-{{!RFC7230}}.
+{{!MESSAGING=RFC7230}}
+and the URI-reference rule defined in Section 2.7 of {{!MESSAGING}}. 
 
+The terms "intermediaries" and "target URI" are to be interpreted as described in {{!MESSAGING}}.
 
 # Header Specifications
 
 The following header is defined
 
-## Retry-Scope {#Retry-Scope-header}
+## Retry-Scope {#retry-scope-header}
 
-The Retry-Scope response header field indicates the application
-scope of Retry-After.
+The Retry-Scope response header field indicates that
+the conditions that lead to returning Retry-After
+are broader in scope than a single request.
 
-    Retry-Scope = "Retry-Scope" ":" OWS quoted-string
-
-Other header fields, 
-MAY use this header field to convey their scope.
+~~~ abnf
+   Retry-Scope = URI-reference
+~~~
 
 Two examples of Retry-Scope:
 
 ~~~
-   Retry-Scope: "/books"
-   Retry-Scope: "https://api.example/"
+   Retry-Scope: /books
+   Retry-Scope: https://api.example/
 ~~~
 
+A user agent receiving the Retry-Scope header field
+in conjunction with a Retry-After header field
+ought to wait before making further request
+to the resource identified by the Retry-Scope field value.
+
+This header MUST NOT be repeated;
+if a user agent receives multiple Retry-Scope header fields,
+then it SHOULD ignore them.
+
+Intermediaries aware of the Retry-Scope semantics
+(eg. reverse proxies)
+MAY modify the Retry-Scope
+in order to help the user agent to correctly identify the scope
+and ensure that the field value matches the target URI,
+like they would have done
+for the Location header field defined in Section 7.1.2 of {{SEMANTICS}}.
 
 # Security Considerations
 
 ## Role of intermediaries
 
-TBD
+An intermediary, by chance or purpose,
+might alter the scope of the Retry-Scope
+thus causing the user agent
+to refrain contacting other server resource.
+
+When the server originating
+the Retry-Scope is behind one or more intermediaries
+it is possible that the field value is not consistent
+with the target URI.
 
 # IANA Considerations
 
@@ -126,20 +140,24 @@ Status:  standard
 
 Author/Change controller:  IETF
 
-Specification document(s):  {{Retry-Scope-header}} of this document
+Specification document(s):  {{retry-scope-header}} of this document
 
+--- back
 
-# Change Log
+# FAQ
+{: numbered="false"}
 
-RFC EDITOR PLEASE DELETE THIS SECTION.
-
+Q: Why not using link relations?
+:  This solution is simpler and was previously discussed
+   [here](https://github.com/httpwg/http-core/pull/317#issuecomment-585868767).
 
 # Acknowledgements
 
 This specification was born from a thread created by Martin Thomson,
-and the subsequent discussion 
+and the subsequent discussion.
 
-# FAQ
+# Change Log
+{: numbered="false"}
 
-  Q: Why not using link relations
-  :  This solution is simpler and was previously discussed [here](https://github.com/httpwg/http-core/pull/317#issuecomment-585868767) 
+RFC EDITOR PLEASE DELETE THIS SECTION.
+
