@@ -61,10 +61,7 @@ or even to all resources on the same server.
 
 
 ## Notational Conventions
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
-"SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this
-document are to be interpreted as described in BCP 14 ({{!RFC2119}} and {{!RFC8174}})
-when, and only when, they appear in all capitals, as shown here.
+{::boilerplate bcp14+}
 
 This document uses the Augmented BNF defined in {{!RFC5234}} and updated
 by {{!RFC7405}} along with the "#rule" extension defined in Section 7 of
