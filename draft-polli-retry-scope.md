@@ -46,7 +46,7 @@ The source code and issues list for this draft can be found at
 
 # Introduction
 
-The Retry-After header {{!SEMANTICS=RFC7231}}, Section 7.1.3 allows a server
+The Retry-After header defined in Section 7.1.3 of {{!SEMANTICS=RFC7231}} allows a server
 to indicate how long the user agent ought to wait before making a follow-up request.
 
 While Retry-After applies to the issued request, it may be useful for the server
