@@ -141,17 +141,17 @@ Specification document(s):  {{retry-scope-header}} of this document
 
 --- back
 
+# Acknowledgements
+
+This specification was born from a thread created by Martin Thomson,
+and the subsequent discussion.
+
 # FAQ
 {: numbered="false"}
 
 Q: Why not using link relations?
 :  This solution is simpler and was previously discussed
    [here](https://github.com/httpwg/http-core/pull/317#issuecomment-585868767).
-
-# Acknowledgements
-
-This specification was born from a thread created by Martin Thomson,
-and the subsequent discussion.
 
 # Change Log
 {: numbered="false"}
