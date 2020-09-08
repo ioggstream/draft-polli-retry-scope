@@ -4,8 +4,8 @@
 
 Network Working Group                                           R. Polli
 Internet-Draft                         Team Digitale, Italian Government
-Intended status: Standards Track                            9 March 2020
-Expires: 10 September 2020
+Intended status: Standards Track                        8 September 2020
+Expires: 12 March 2021
 
 
                         Retry-Scope header field
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 September 2020.
+   This Internet-Draft will expire on 12 March 2021.
 
 
 
@@ -53,9 +53,9 @@ Status of This Memo
 
 
 
-Polli                   Expires 10 September 2020               [Page 1]
+Polli                     Expires 12 March 2021                 [Page 1]
 
-Internet-Draft          Retry-Scope header field              March 2020
+Internet-Draft          Retry-Scope header field          September 2020
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Polli                   Expires 10 September 2020               [Page 2]
+Polli                     Expires 12 March 2021                 [Page 2]
 
-Internet-Draft          Retry-Scope header field              March 2020
+Internet-Draft          Retry-Scope header field          September 2020
 
 
 1.1.  Notational Conventions
@@ -165,9 +165,9 @@ Internet-Draft          Retry-Scope header field              March 2020
 
 
 
-Polli                   Expires 10 September 2020               [Page 3]
+Polli                     Expires 12 March 2021                 [Page 3]
 
-Internet-Draft          Retry-Scope header field              March 2020
+Internet-Draft          Retry-Scope header field          September 2020
 
 
 3.  Security Considerations
@@ -221,9 +221,9 @@ Internet-Draft          Retry-Scope header field              March 2020
 
 
 
-Polli                   Expires 10 September 2020               [Page 4]
+Polli                     Expires 12 March 2021                 [Page 4]
 
-Internet-Draft          Retry-Scope header field              March 2020
+Internet-Draft          Retry-Scope header field          September 2020
 
 
    [RFC5234]  Crocker, D., Ed. and P. Overell, "Augmented BNF for Syntax
@@ -277,4 +277,4 @@ Author's Address
 
 
 
-Polli                   Expires 10 September 2020               [Page 5]
+Polli                     Expires 12 March 2021                 [Page 5]
